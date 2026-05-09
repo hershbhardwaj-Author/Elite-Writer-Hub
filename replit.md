@@ -1,44 +1,52 @@
-# [Project name]
+# The Author's Forge
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A premium landing page for a publishing and writing cohort — taking expert coaches and consultants from idea to published book in 5 months.
 
 ## Run & Operate
 
+- `pnpm --filter @workspace/authors-forge run dev` — run the frontend (port assigned by workflow)
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Frontend: React + Vite, Tailwind CSS, Framer Motion, shadcn/ui
+- API: Express 5 (shared api-server)
+- DB: PostgreSQL + Drizzle ORM (provisioned separately if needed)
+- Build: Vite (static output)
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/authors-forge/` — the landing page React app
+- `artifacts/authors-forge/src/index.css` — theme/palette (dark premium theme)
+- `artifacts/authors-forge/src/App.tsx` — router entry point
+- `artifacts/authors-forge/src/pages/` — page components
+- `attached_assets/` — source reference image (accessible via @assets alias in Vite)
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Presentation-first single-page app — no backend or API calls needed.
+- The @assets Vite alias resolves to the workspace-level attached_assets/ directory.
+- Google Font imports must be the first line of index.css (before @import "tailwindcss").
+- Dark, editorial color palette targeting high-value coaches/consultants.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+The Author's Forge is a premium 5-month publishing incubator that builds, publishes, and positions books for expert coaches and consultants. The landing page presents the 5-month journey, deliverables, program details, and a call to action.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Premium, dark, editorial design aesthetic
+- Target audience: successful, high-value coaches and consultants
+- No emojis in the UI
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- All CSS custom properties in the scaffold index.css default to "red" — must be replaced with real HSL values before components render correctly.
+- Google Font @import url() must be the FIRST line of index.css.
+- The Vite @assets alias points to ../../attached_assets relative to the artifact root.
 
 ## Pointers
 

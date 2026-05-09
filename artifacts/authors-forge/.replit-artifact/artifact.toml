@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "The Author's Forge"
+version = "1.0.0"
+id = "artifacts/authors-forge"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22210
+
+[services.development]
+run = "pnpm --filter @workspace/authors-forge run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/authors-forge", "run", "build" ]
+publicDir = "artifacts/authors-forge/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22210"
+BASE_PATH = "/"
