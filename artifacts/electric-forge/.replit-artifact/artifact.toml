@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/electric-forge/"
+title = "The Author's Forge — Electric"
+version = "1.0.0"
+id = "artifacts/electric-forge"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/electric-forge/" ]
+localPort = 21772
+
+[services.development]
+run = "pnpm --filter @workspace/electric-forge run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/electric-forge", "run", "build" ]
+publicDir = "artifacts/electric-forge/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21772"
+BASE_PATH = "/electric-forge/"
