@@ -21,7 +21,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-primary-foreground font-sans noise-bg">
-      
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 mix-blend-difference">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -31,7 +30,6 @@ function App() {
           </Button>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 pb-32 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -44,7 +42,7 @@ function App() {
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <FadeIn>
-            <div className="uppercase tracking-[0.3em] text-primary mb-6 text-sm font-semibold">The Author's Forge</div>
+            <div className="uppercase tracking-[0.3em] text-primary mb-6 font-semibold text-[24px]">The Author's Forge</div>
           </FadeIn>
           
           <FadeIn delay={0.2}>
@@ -67,7 +65,6 @@ function App() {
           </FadeIn>
         </div>
       </section>
-
       {/* The 5-Month Journey */}
       <section className="py-32 px-6 relative bg-zinc-950 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -112,7 +109,6 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* What You Walk Away With */}
       <section className="py-32 px-6 bg-background relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[150px] pointer-events-none" />
@@ -144,7 +140,6 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* Program at a Glance */}
       <section className="py-32 px-6 bg-zinc-950 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -180,7 +175,6 @@ function App() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-40 px-6 relative overflow-hidden bg-background">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
@@ -211,7 +205,6 @@ function App() {
           </FadeIn>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-white/5 text-center md:text-left bg-zinc-950">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
