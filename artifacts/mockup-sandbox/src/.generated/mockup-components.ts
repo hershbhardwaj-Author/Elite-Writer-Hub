@@ -2,5 +2,9 @@
 type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/authors-forge-variants/BrightAuthority.tsx": () => import("../components/mockups/authors-forge-variants/BrightAuthority.tsx"),
-  "./components/mockups/authors-forge-variants/ElectricRebellion.tsx": () => import("../components/mockups/authors-forge-variants/ElectricRebellion.tsx")
+  "./components/mockups/authors-forge-variants/ElectricRebellion.tsx": () => import("../components/mockups/authors-forge-variants/ElectricRebellion.tsx"),
+  "./components/mockups/forge-concepts/TheComparison.tsx": () => import("../components/mockups/forge-concepts/TheComparison.tsx"),
+  "./components/mockups/forge-concepts/TheCountdown.tsx": () => import("../components/mockups/forge-concepts/TheCountdown.tsx"),
+  "./components/mockups/forge-concepts/TheDiagnostic.tsx": () => import("../components/mockups/forge-concepts/TheDiagnostic.tsx"),
+  "./components/mockups/forge-concepts/ThePortfolio.tsx": () => import("../components/mockups/forge-concepts/ThePortfolio.tsx")
 };
