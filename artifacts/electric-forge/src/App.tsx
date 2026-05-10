@@ -4,6 +4,7 @@ import {
   Library, AlertTriangle, X, Check, BookOpen, FileText, Megaphone,
   ChevronLeft, CheckCircle, ArrowUpRight,
 } from "lucide-react";
+import ApplicationDrawer from "./components/ApplicationDrawer";
 
 /* ─────────────────────────── DATA ─────────────────────────── */
 
@@ -540,7 +541,7 @@ function SectionComparison() {
   );
 }
 
-function SectionPortfolio() {
+function SectionPortfolio({ onApply }: { onApply: () => void }) {
   const [active, setActive] = useState<string | null>(null);
   const item = portfolioItems.find(a => a.id === active);
   const isDark = item?.color === "bg-black" || item?.color === "bg-[#0066FF]";
@@ -613,6 +614,7 @@ function SectionPortfolio() {
                 {item.description}
               </p>
               <button
+                onClick={onApply}
                 className="flex items-center gap-3 px-6 py-4 font-bold uppercase tracking-widest border-4 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all cursor-pointer"
                 style={{ backgroundColor: item.accentHex, color: isDark ? "white" : "black" }}
               >
@@ -632,7 +634,7 @@ function SectionPortfolio() {
   );
 }
 
-function SectionDiagnostic() {
+function SectionDiagnostic({ onApply }: { onApply: () => void }) {
   const [step, setStep] = useState<"idle" | number | "result">("idle");
   const [answers, setAnswers] = useState<number[]>([]);
   const [selected, setSelected] = useState<number | null>(null);
@@ -768,6 +770,7 @@ function SectionDiagnostic() {
               Whatever your starting point, our 5-month system takes you from where you are today to a published, market-ready book.
             </p>
             <button
+              onClick={onApply}
               data-testid="button-apply-diagnostic"
               className="flex items-center justify-between bg-[#0066FF] text-white p-6 font-bold uppercase tracking-widest text-lg border-4 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all cursor-pointer mb-4"
             >
@@ -786,17 +789,23 @@ function SectionDiagnostic() {
 /* ─────────────────────────── PAGE ─────────────────────────── */
 
 export default function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const openDrawer = () => setDrawerOpen(true);
+
   return (
     <div
       className="min-h-screen bg-white text-black selection:bg-[#00E676] selection:text-black font-['Space_Grotesk'] overflow-x-hidden border-[16px] border-black"
       data-testid="page-root"
     >
+      <ApplicationDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+
       {/* ── NAV ── */}
       <nav className="flex justify-between items-center p-4 sm:p-8 border-b-8 border-black bg-white sticky top-0 z-50" data-testid="nav">
         <div className="font-['Bebas_Neue'] text-3xl sm:text-5xl tracking-tight leading-none uppercase" data-testid="nav-logo">
           The Author's Forge
         </div>
         <button
+          onClick={openDrawer}
           data-testid="button-apply-nav"
           className="hidden sm:flex items-center gap-2 bg-[#0066FF] text-white px-6 py-3 font-bold uppercase tracking-wider hover:bg-black transition-colors border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] cursor-pointer"
         >
@@ -837,7 +846,7 @@ export default function App() {
               <div className="font-['Bebas_Neue'] text-9xl leading-none" data-testid="text-months-number">5</div>
               <div className="font-bold text-2xl uppercase tracking-widest">Months</div>
             </div>
-            <div className="flex-1 p-8 flex flex-col justify-center items-center bg-black text-[#00E676] hover:bg-[#00E676] hover:text-black transition-colors cursor-pointer group">
+            <div onClick={openDrawer} className="flex-1 p-8 flex flex-col justify-center items-center bg-black text-[#00E676] hover:bg-[#00E676] hover:text-black transition-colors cursor-pointer group">
               <div className="font-bold text-3xl uppercase text-center mb-4 group-hover:scale-110 transition-transform">
                 Start Your Engine
               </div>
@@ -885,7 +894,7 @@ export default function App() {
       <SectionComparison />
 
       {/* ── PORTFOLIO (What You Get) ── */}
-      <SectionPortfolio />
+      <SectionPortfolio onApply={openDrawer} />
 
       {/* ── PROGRAM AT A GLANCE ── */}
       <section className="bg-black py-20 px-4 sm:px-8 border-b-8 border-[#00E676]" data-testid="section-program">
@@ -917,7 +926,7 @@ export default function App() {
       </section>
 
       {/* ── DIAGNOSTIC (Is It Right for You?) ── */}
-      <SectionDiagnostic />
+      <SectionDiagnostic onApply={openDrawer} />
 
       {/* ── CTA ── */}
       <section className="bg-white py-32 px-4 sm:px-8 flex flex-col items-center justify-center text-center" data-testid="section-cta">
@@ -933,6 +942,7 @@ export default function App() {
           Join a curated group of high-achieving experts. Spots are strictly limited to 10–12 authors per cohort.
         </p>
         <button
+          onClick={openDrawer}
           data-testid="button-apply-cta"
           className="mt-8 group relative inline-flex items-center justify-center px-12 py-6 font-bold text-white uppercase tracking-widest text-xl overflow-hidden bg-[#0066FF] border-8 border-black shadow-[12px_12px_0px_0px_rgba(0,230,118,1)] hover:shadow-none hover:translate-x-[12px] hover:translate-y-[12px] transition-all cursor-pointer"
         >
