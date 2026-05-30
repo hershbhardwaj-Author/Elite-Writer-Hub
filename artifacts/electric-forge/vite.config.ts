@@ -27,6 +27,7 @@ if (!basePath) {
 }
 
 export default defineConfig({
+  base: '/Elite-Writer-Hub/', 
   base: basePath,
   plugins: [
     react(),
